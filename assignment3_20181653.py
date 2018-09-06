@@ -29,12 +29,14 @@ def doScoreDB(scdb):
             except ValueError as e:
                 print("Age and Score must be integer")
                 continue
+            except IndexError as e:
+                print("Age or Score not given")
             else:
                 record = {'Name':parse[1], 'Age':parse[2], 'Score':parse[3]}
                 scdb += [record]
         elif parse[0] == 'del':
             if len(parse) == 1:
-                print("name not given")
+                print("Name not given")
                 continue
             for p in scdb:
                 if p['Name'] == parse[1]:
@@ -50,7 +52,7 @@ def doScoreDB(scdb):
             break
         elif parse[0] == 'find':
             if len(parse) == 1:
-                print("name not given")
+                print("Name not given")
                 continue
             for p in scdb:
                 if p['Name'] == parse[1]:
@@ -61,10 +63,15 @@ def doScoreDB(scdb):
                 else:
                     continue
         elif parse[0] == 'inc':
+            if len(parse) == 1:
+                print("Name not given")
+                continue
             try:
                 amount = int(parse[2])
             except ValueError as e:
-                print("점수는 숫자로 입력하세요")
+                print("Score must be integer")
+            except IndexError as e:
+                print("Score not given")
             else:
                 for i in range(len(scdb)):
                     if scdb[i]['Name'] == parse[1]:

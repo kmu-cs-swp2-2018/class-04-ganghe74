@@ -7,8 +7,8 @@ def fibo(n):
     return fibo(n - 1) + fibo(n - 2)
 
 def iterfibo(n):
-	a = [0,1,1]
-	for i in range(3,n+1):
+	a = [0,1]
+	for i in range(2,n+1):
 		a.append(a[i-2]+a[i-1])
 	return a[n]
 

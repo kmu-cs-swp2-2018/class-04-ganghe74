@@ -22,7 +22,9 @@ def solution(x):
 	return answer
 
 if __name__ == "__main__":
-	x = [{"name": "Kim", "score": 50},
-		{"name": "Yoon", "score": 60},
-		{"name": "Lee", "score": 40}]
+	x = [{"name": "Lee", "score": 30},
+		{"name": "Kim", "score": 65},
+		{"name": "Park", "score": 45},
+		{"name": "Choi", "score": 57},
+		{"name": "Yoon", "score": 50}]
 	print(higher_than_average(x))

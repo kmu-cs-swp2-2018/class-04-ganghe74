@@ -90,11 +90,11 @@ class ScoreDB(QWidget):
         except FileNotFoundError as e:
             self.scoredb = []
             return
-
         try:
             self.scoredb =  pickle.load(fH)
         except:
-            pass
+            self.scoredb = []
+            return
         else:
             pass
         fH.close()

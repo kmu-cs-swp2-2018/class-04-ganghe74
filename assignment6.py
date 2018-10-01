@@ -143,6 +143,12 @@ class ScoreDB(QWidget):
                 self.resultText.append(temp)
 
     def incScoreDB(self):
+        try:
+            int(self.amountLine.text())
+        except ValueError as e:
+            self.resultText.clear()
+            self.resultText.append('Amount must be integer')
+            return
         for p in self.scoredb:
             if p['Name'] == self.nameLine.text():
                 p['Score'] += int(self.amountLine.text())

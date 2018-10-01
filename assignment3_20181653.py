@@ -38,10 +38,13 @@ def doScoreDB(scdb):
             if len(parse) == 1:
                 print("Name not given")
                 continue
-            for p in scdb:
-                if p['Name'] == parse[1]:
-                    scdb.remove(p)
-                    break
+            temp = True
+            while temp:
+                temp = False
+                for p in scdb:
+                    if p['Name'] == parse[1]:
+                        scdb.remove(p)
+                        temp = True
         elif parse[0] == 'show':
             sortKey = 'Name' if len(parse) == 1 else parse[1]
             if not (sortKey == 'Name' or sortKey == 'Age' or sortKey == 'Score'):

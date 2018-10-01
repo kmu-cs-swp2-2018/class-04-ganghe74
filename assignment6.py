@@ -19,28 +19,29 @@ class ScoreDB(QWidget):
     def initUI(self):
         hbox1 = QHBoxLayout()
         nameLabel = QLabel('Name:')
-        nameLine = QLineEdit('')
+        self.nameLine = QLineEdit('')
         ageLabel = QLabel('Age:')
-        ageLine = QLineEdit('')
+        self.ageLine = QLineEdit('')
         scoreLabel = QLabel('Score:')
-        scoreLine = QLineEdit('')
+        self.scoreLine = QLineEdit('')
         hbox1.addWidget(nameLabel)
-        hbox1.addWidget(nameLine)
+        hbox1.addWidget(self.nameLine)
         hbox1.addWidget(ageLabel)
-        hbox1.addWidget(ageLine)
+        hbox1.addWidget(self.ageLine)
         hbox1.addWidget(scoreLabel)
-        hbox1.addWidget(scoreLine)
+        hbox1.addWidget(self.scoreLine)
 
         hbox2 = QHBoxLayout()
         hbox2.addStretch(1)
         amountLabel = QLabel('Amount')
-        amountLine = QLineEdit('')
+        self.amountLine = QLineEdit('')
         keyLabel = QLabel('Key')
-        keyComboBox = QComboBox()
+        self.keyComboBox = QComboBox()
+        self.keyComboBox.addItems(['Name', 'Age', 'Score'])
         hbox2.addWidget(amountLabel)
-        hbox2.addWidget(amountLine)
+        hbox2.addWidget(self.amountLine)
         hbox2.addWidget(keyLabel)
-        hbox2.addWidget(keyComboBox)
+        hbox2.addWidget(self.keyComboBox)
 
         hbox3 = QHBoxLayout()
         hbox3.addStretch(1)
@@ -54,14 +55,20 @@ class ScoreDB(QWidget):
         hbox3.addWidget(findButton)
         hbox3.addWidget(incButton)
         hbox3.addWidget(showButton)
+        addButton.clicked.connect(self.addScoreDB)
+        delButton.clicked.connect(self.delScoreDB)
+        findButton.clicked.connect(self.findScoreDB)
+        incButton.clicked.connect(self.incScoreDB)
+        showButton.clicked.connect(self.showScoreDB)
 
         hbox4 = QHBoxLayout()
         resultLabel = QLabel('Result:')
         hbox4.addWidget(resultLabel)
 
         hbox5 = QHBoxLayout()
-        resultText = QTextEdit('')
-        hbox5.addWidget(resultText)
+        self.resultText = QTextEdit('')
+        self.resultText.setReadOnly(True)
+        hbox5.addWidget(self.resultText)
 
         vbox = QVBoxLayout()
         vbox.addLayout(hbox1)
@@ -93,7 +100,6 @@ class ScoreDB(QWidget):
             pass
         fH.close()
 
-
     # write the data into person db
     def writeScoreDB(self):
         fH = open(self.dbfilename, 'wb')
@@ -101,7 +107,44 @@ class ScoreDB(QWidget):
         fH.close()
 
     def showScoreDB(self):
-        pass
+        self.resultText.clear()
+        for p in sorted(self.scoredb, key=lambda person: person[self.keyComboBox.currentText()]):
+            temp = ''
+            for attr in sorted(p):
+                temp += str(attr) + '=' + str(p[attr]) + '\t'
+            self.resultText.append(temp)
+
+    def addScoreDB(self):
+        try:
+            record = {'Name':self.nameLine.text(), 'Age':int(self.ageLine.text()), 'Score':int(self.scoreLine.text())}
+        except ValueError as e:
+            self.resultText.clear()
+            self.resultText.append('Age or Score must be integer')
+            return
+        self.scoredb += [record]
+        self.showScoreDB()
+
+    def delScoreDB(self):
+        for p in self.scoredb:
+            if self.nameLine.text() == p['Name']:
+                self.scoredb.remove(p)
+        self.showScoreDB()
+
+    def findScoreDB(self):
+        self.resultText.clear()
+        for p in self.scoredb:
+            if p['Name'] == self.nameLine.text():
+                temp = ''
+                for attr in sorted(p):
+                    temp += str(attr) + '=' + str(p[attr]) + '\t'
+                self.resultText.append(temp)
+
+    def incScoreDB(self):
+        for p in self.scoredb:
+            if p['Name'] == self.nameLine.text():
+                p['Score'] += int(self.amountLine.text())
+        self.showScoreDB()
+
 
 
 if __name__ == '__main__':

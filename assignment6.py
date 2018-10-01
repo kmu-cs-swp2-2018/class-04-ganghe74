@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import (QWidget, QPushButton,
     QComboBox, QTextEdit, QLineEdit)
 from PyQt5.QtCore import Qt
 
-
 class ScoreDB(QWidget):
 
     def __init__(self):
@@ -125,9 +124,13 @@ class ScoreDB(QWidget):
         self.showScoreDB()
 
     def delScoreDB(self):
-        for p in self.scoredb:
-            if self.nameLine.text() == p['Name']:
-                self.scoredb.remove(p)
+        temp = True
+        while temp:
+            temp = False
+            for p in self.scoredb:
+                if self.nameLine.text() == p['Name']:
+                    self.scoredb.remove(p)
+                    temp = True
         self.showScoreDB()
 
     def findScoreDB(self):

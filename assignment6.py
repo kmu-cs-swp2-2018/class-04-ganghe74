@@ -90,11 +90,11 @@ class ScoreDB(QWidget):
         except FileNotFoundError as e:
             self.scoredb = []
             return
-
         try:
             self.scoredb =  pickle.load(fH)
         except:
-            pass
+            self.scoredb = []
+            return
         else:
             pass
         fH.close()
@@ -124,9 +124,13 @@ class ScoreDB(QWidget):
         self.showScoreDB()
 
     def delScoreDB(self):
-        for p in self.scoredb:
-            if self.nameLine.text() == p['Name']:
-                self.scoredb.remove(p)
+        temp = True
+        while temp:
+            temp = False
+            for p in self.scoredb:
+                if self.nameLine.text() == p['Name']:
+                    self.scoredb.remove(p)
+                    temp = True
         self.showScoreDB()
 
     def findScoreDB(self):
@@ -139,6 +143,12 @@ class ScoreDB(QWidget):
                 self.resultText.append(temp)
 
     def incScoreDB(self):
+        try:
+            int(self.amountLine.text())
+        except ValueError as e:
+            self.resultText.clear()
+            self.resultText.append('Amount must be integer')
+            return
         for p in self.scoredb:
             if p['Name'] == self.nameLine.text():
                 p['Score'] += int(self.amountLine.text())

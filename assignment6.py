@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import (QWidget, QPushButton,
     QComboBox, QTextEdit, QLineEdit)
 from PyQt5.QtCore import Qt
 
-
 class ScoreDB(QWidget):
 
     def __init__(self):

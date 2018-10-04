@@ -1,3 +1,4 @@
+# 5조 이동헌 제작
 import pickle
 import sys
 from PyQt5.QtWidgets import (QWidget, QPushButton,

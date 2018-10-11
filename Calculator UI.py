@@ -75,7 +75,6 @@ class Calculator(QWidget):
 
         numLayout.addWidget(self.digitButton[0], 3, 0) #exceptcase
         for i in range(1, 10):
-            print(3-(i+2) // 3, (i+2) % 3)
             numLayout.addWidget(self.digitButton[i], 3 - (i+2) // 3, (i+2) % 3)
             
         '''

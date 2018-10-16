@@ -80,10 +80,6 @@ def doScoreDB(scdb):
                     if scdb[i]['Name'] == parse[1]:
                         scdb[i]['Score'] += amount
                         break
-        elif parse[0] == 'del':
-            for i in range(len(scdb)):
-                if scdb[i]['Name'] == parse[1]:
-                    del scdb[i]
         else:
             print("Invalid command: " + parse[0])
 

@@ -1,3 +1,4 @@
+#07-2 계산기 코드 개선 및 기능 추가 과제
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QLineEdit, QToolButton

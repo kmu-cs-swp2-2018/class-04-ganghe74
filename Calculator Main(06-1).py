@@ -1,3 +1,4 @@
+# 06-1 계산기 UI 설계 및 구현 최적화 과제
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QLineEdit, QToolButton

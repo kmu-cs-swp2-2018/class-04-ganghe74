@@ -73,7 +73,7 @@ class Calculator(QWidget):
             self.display.setText(result)
         elif key == 'C':
             self.display.clear()
-        elif key == 'CE':
+        elif key == '←':
             self.display.setText(self.display.text()[:-1])
         elif key in constantList:
             self.display.setText(self.display.text() + consDictionary[key])

@@ -106,8 +106,6 @@ class Calculator(QWidget):
             n = self.display.text()
             value = funcDictionary[key](n)
             self.display.setText(str(value))
-        else:
-            self.display.setText(self.display.text() + key)
 
         '''
         elif key == functionList[0]:
@@ -127,6 +125,9 @@ class Calculator(QWidget):
             value = calcFunctions.decToRoman(n)
             self.display.setText(str(value))
         '''
+
+        else:
+            self.display.setText(self.display.text() + key)
 
     def keyPressEvent(self,e):
         if e.key()==Qt.Key_Escape:

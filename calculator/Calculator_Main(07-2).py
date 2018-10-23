@@ -2,11 +2,10 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QLineEdit
-#from PyQt5.QtWidgets import QSizePolicy, QToolButton
 from PyQt5.QtWidgets import QLayout, QGridLayout
 
 from keypad import numPadList, operatorList, constantList, functionList
-from calcDictionaries import *
+from calcDictionaries import consDictionary, funcDictionary
 from Button import Button
 
 class Calculator(QWidget):
@@ -74,6 +73,8 @@ class Calculator(QWidget):
             self.display.setText(result)
         elif key == 'C':
             self.display.clear()
+        elif key == 'CE':
+            self.display.setText(self.display.text()[:-1])
         elif key in constantList:
             self.display.setText(self.display.text() + consDictionary[key])
 

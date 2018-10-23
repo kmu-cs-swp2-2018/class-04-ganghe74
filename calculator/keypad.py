@@ -9,7 +9,7 @@ operatorList = [
     '*', '/',
     '+', '-',
     '(', ')',
-    'C',
+    'C', 'CE'
 ]
 
 constantList = [

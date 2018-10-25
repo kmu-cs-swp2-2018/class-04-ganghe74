@@ -4,7 +4,7 @@ def factorial(numStr):
     try:
         n = int(numStr)
         if n > 100000:
-            return 'Error!'
+            raise Exception
         r = str(fact(n))
     except:
         r = 'Error!'

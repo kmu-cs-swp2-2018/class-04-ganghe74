@@ -17,7 +17,7 @@ class Calculator(QWidget):
         self.display = QLineEdit()
         self.display.setReadOnly(True)
         self.display.setAlignment(Qt.AlignRight)
-        self.display.setMaxLength(15)
+        self.display.setMaxLength(40)
 
         # Button Creation and Placement
         numLayout = QGridLayout()

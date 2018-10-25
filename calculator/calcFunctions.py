@@ -3,6 +3,8 @@ from math import factorial as fact
 def factorial(numStr):
     try:
         n = int(numStr)
+        if n > 100000:
+            return 'Error!'
         r = str(fact(n))
     except:
         r = 'Error!'

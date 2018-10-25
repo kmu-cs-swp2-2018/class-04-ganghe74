@@ -32,7 +32,7 @@ def decToRoman(numStr):
     except:
         return 'Error!'
     
-    if n>= 4000:
+    if n>= 4000 or n<=0:
         return 'Error!'
     
     romans = [
@@ -51,5 +51,32 @@ def decToRoman(numStr):
     return result
 
 def romanToDec(numStr):
-    return 'Roman to Dec'
+    romans = [
+        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+         (100, 'C'),  (90, 'XC'),  (50, 'L'),  (40, 'XL'),
+          (10, 'X'),   (9, 'IX'),   (5, 'V'),   (4, 'IV'),
+           (1, 'I')
+    ]
 
+    result = 0
+
+    for value, letters in romans:
+        count = 0
+        while numStr[:len(letters)] == letters:
+            numStr = numStr[len(letters):]
+            result += value
+            count += 1
+        if count > 3:
+            return 'Error!'
+    if len(numStr) != 0:
+        return 'Error!'
+    return result
+
+if __name__ == '__main__':
+    print("romanToDec Test")
+    s = input()
+    print(romanToDec(s))
+
+    for i in range(1,4000):
+        if romanToDec(decToRoman(i)) != i:
+            print('error at :', i)

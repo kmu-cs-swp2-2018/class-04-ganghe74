@@ -57,18 +57,16 @@ def romanToDec(numStr):
           (10, 'X'),   (9, 'IX'),   (5, 'V'),   (4, 'IV'),
            (1, 'I')
     ]
-
+    numStrBackup = numStr
     result = 0
-
     for value, letters in romans:
         count = 0
         while numStr[:len(letters)] == letters:
             numStr = numStr[len(letters):]
             result += value
             count += 1
-        if count > 3:
-            return 'Error!'
-    if len(numStr) != 0:
+
+    if decToRoman(result) != numStrBackup:
         return 'Error!'
     return result
 

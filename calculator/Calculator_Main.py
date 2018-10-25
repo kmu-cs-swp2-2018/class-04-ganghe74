@@ -1,11 +1,11 @@
-#07-2 계산기 코드 개선 및 기능 추가 과제
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QLayout, QGridLayout
 
-from keypad import numPadList, operatorList, constantList, functionList
-from calcDictionaries import consDictionary, funcDictionary
+from keypad import numPadList, operatorList
+from functions import functionMap, functionList
+from constants import constantMap, constantList
 from Button import Button
 
 class Calculator(QWidget):
@@ -76,41 +76,11 @@ class Calculator(QWidget):
         elif key == '←':
             self.display.setText(self.display.text()[:-1])
         elif key in constantList:
-            self.display.setText(self.display.text() + consDictionary[key])
-
-        #elif key == constantList[0]:
-        #    self.display.setText(self.display.text() + '3.141592')
-        #elif key == constantList[1]:
-        #    self.display.setText(self.display.text() + '3E+8')
-        #elif key == constantList[2]:
-        #    self.display.setText(self.display.text() + '340')
-        #elif key == constantList[3]:
-        #    self.display.setText(self.display.text() + '1.5E+8')
-        
-        
+            self.display.setText(self.display.text() + constantMap[constantList.index(key)][1])
         elif key in functionList:
             n = self.display.text()
-            value = funcDictionary[key](n)
+            value = functionMap[functionList.index(key)][1](n)
             self.display.setText(str(value))
-
-        
-        #elif key == functionList[0]:
-        #    n = self.display.text()
-        #    value = calcFunctions.factorial(n)
-        #    self.display.setText(str(value))
-        #elif key == functionList[1]:
-        #    n = self.display.text()
-        #    value = calcFunctions.decToBin(n)
-        #    self.display.setText(str(value))
-        #elif key == functionList[2]:
-        #    n = self.display.text()
-        #    value = calcFunctions.binToDec(n)
-        #    self.display.setText(str(value))
-        #elif key == functionList[3]:
-        #    n = self.display.text()
-        #    value = calcFunctions.decToRoman(n)
-        #    self.display.setText(str(value))
-
         else:
             self.display.setText(self.display.text() + key)
 
@@ -126,4 +96,3 @@ if __name__ == '__main__':
     calc = Calculator()
     calc.show()
     sys.exit(app.exec_())
-

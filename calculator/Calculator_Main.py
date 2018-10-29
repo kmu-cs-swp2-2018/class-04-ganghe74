@@ -78,6 +78,7 @@ class Calculator(QWidget):
             self.display.clear()
         elif key == '←':
             self.display.setText(self.display.text()[:-1])
+            self.delLast = False
         elif key in constantList:
             self.display.setText(self.display.text() + constantMap[constantList.index(key)][1])
         elif key in functionList:

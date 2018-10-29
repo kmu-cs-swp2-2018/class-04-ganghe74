@@ -57,6 +57,8 @@ class Calculator(QWidget):
 
         self.setWindowTitle("My Calculator")
 
+        self.delLast = False
+
 
     def buttonClicked(self):
 
@@ -84,7 +86,20 @@ class Calculator(QWidget):
             self.display.setText(str(value))
         elif key in incontinuousList:
             if not self.display.text()[-1:] in incontinuousList:
-                self.display.setText(self.display.text() + key)                
+                self.display.setText(self.display.text() + key)
+        elif key == '0':
+            text = self.display.text()[-2:]
+            if text[:1] in operatorList and text[1:] == '0':
+                self.delLast = True
+                return
+            elif text[:1] == '0' and text[1:] == '':
+                self.delLast = True
+                return
+            else:
+                self.display.setText(self.display.text() + key)
+        elif self.delLast:
+            self.display.setText(self.display.text()[:-1] + key)
+            self.delLast = False
         else:
             self.display.setText(self.display.text() + key)
 

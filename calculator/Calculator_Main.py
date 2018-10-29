@@ -7,6 +7,7 @@ from keypad import numPadList, operatorList
 from functions import functionMap, functionList
 from constants import constantMap, constantList
 from Button import Button
+from incontinuous import incontinuousList
 
 class Calculator(QWidget):
 
@@ -81,6 +82,9 @@ class Calculator(QWidget):
             n = self.display.text()
             value = functionMap[functionList.index(key)][1](n)
             self.display.setText(str(value))
+        elif key in incontinuousList:
+            if not self.display.text()[-1:] in incontinuousList:
+                self.display.setText(self.display.text() + key)                
         else:
             self.display.setText(self.display.text() + key)
 

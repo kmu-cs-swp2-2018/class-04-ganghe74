@@ -26,6 +26,13 @@ def binToDec(numStr):
         r = 'Error!'
     return r
 
+romans = [
+    (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+     (100, 'C'),  (90, 'XC'),  (50, 'L'),  (40, 'XL'),
+      (10, 'X'),   (9, 'IX'),   (5, 'V'),   (4, 'IV'),
+       (1, 'I')
+    ]
+
 def decToRoman(numStr):
     try:
         n = int(numStr)
@@ -34,13 +41,6 @@ def decToRoman(numStr):
     
     if n>= 4000 or n<=0:
         return 'Error!'
-    
-    romans = [
-        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
-         (100, 'C'),  (90, 'XC'),  (50, 'L'),  (40, 'XL'),
-          (10, 'X'),   (9, 'IX'),   (5, 'V'),   (4, 'IV'),
-           (1, 'I')
-    ]
 
     result = ''
     for value, letters in romans:
@@ -51,12 +51,6 @@ def decToRoman(numStr):
     return result
 
 def romanToDec(romanNumStr):
-    romans = [
-        (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
-         (100, 'C'),  (90, 'XC'),  (50, 'L'),  (40, 'XL'),
-          (10, 'X'),   (9, 'IX'),   (5, 'V'),   (4, 'IV'),
-           (1, 'I')
-    ]
     romanNumStrBackup = romanNumStr
     result = 0
     for value, letters in romans:

@@ -1,3 +1,14 @@
+# 옵저버 패턴 보고서 예제코드
+
+class Observer:
+    def __init__(self):
+        pass
+
+    # View를 통해 출력해야 하지만
+    # 편의상 옵저버 안에 포함시킴
+    def notify(self, information):
+        print(information)
+
 class Observable:
     def __init__(self):
         self.observerCollection = []
@@ -19,3 +30,9 @@ class Observable:
     def updateInformation(self, information):
         self.data = information
         self.notifyObservers(self.data)
+
+observer = Observer()
+observable = Observable()
+
+observable.registerObserver(observer)
+observable.updateInformation("올해는 2018년")

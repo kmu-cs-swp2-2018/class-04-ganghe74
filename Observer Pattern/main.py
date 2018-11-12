@@ -6,4 +6,3 @@ observable = Observable()
 
 observable.registerObserver(observer)
 observable.updateInformation("올해는 2018년")
-observable.notifyObservers

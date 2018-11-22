@@ -11,9 +11,8 @@ class Model(Observable):
         self.__numTries = 0  # 7이되면 gameOver
         self.hangmanList = hangmanList
         self.__currentStatus = "_"*len(self.secretWord)
-        self.__guessedChars = ""
-        self.__message = ""
-
+        self.__guessedChars = "사용 글자 : "
+        self.__message = "아래에 입력하고 버튼을 누르세요!"
     @property
     def numTries(self):
         return self.__numTries

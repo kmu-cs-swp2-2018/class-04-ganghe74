@@ -56,7 +56,6 @@ class Layout(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-
         # Hangman display window
         self.hangmanView = hangmanView()
 
